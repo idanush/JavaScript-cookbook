@@ -118,18 +118,29 @@ The traditional client MVC design pattern implement the separation of concerns p
 * Model - represents the domain specific knowledge and data in the application. Models notify whoever chooses to observe about changes to their state. 
 * View - the user interface of the application. The view knows the existence of the model to observe it, but doesn’t directly interact with it. 
 * Controller - handles the input in the application and updates the model with changes.
-MV* is a family of variations over MVC and is being implemented on many modern JavaScript frameworks. MV* framework have model and view, and usually some additional components such as router. For example, in Backbone.js the controller is integrated with the view.
-Knockout.js implements  MVVM (Model View ViewModel).
-Using a modern and mature framework prevents the application’s code from becoming very quickly into a “spaghetti code” which characterized previous JavaScript implementation. The frameworks add a layer of abstraction between the code and the DOM, reducing or eliminating DOM constraints on the structure of the application’s code. 
+MV* is a family of variations over MVC and is being implemented on many modern JavaScript frameworks. Most frameworks offer some variation on the  MVC model.  For Example, Backbone integrates the controllers directly into the view. Knockout.js implements the MVVM (Model View ViewModel) pattern instead of classic MVC. Most frameworks offer additional features and facilities beyond classic MVC.  Most frameworks provide routing capabilities, and model to REST transfers.  Almost all frameworks offer additional features such as two way binding. 
 
-Building a modular and modern single page application in JavaScript is not different than building any other application. In fact, the same design patterns of traditional desktop application are implemented in JavaScript. The structure of a single page application is nearly identical to desktop applications. Using mature frameworks such as Backbone.js and Knockout.js facilitates clean separation of code to well defined domains.
-In general, the model 
+Using a framework means there will be some additional learning curve but in return you get a structure to build larger applications and avoid "spaghetti code" which is very easy to do in JavaScript. Most frameworks also abstract the DOM allowing the application's structure to be defined freely without constraints.  Building a modular and modern single page application in JavaScript is not different than building any other application. In fact, the same design patterns of traditional desktop application are implemented in JavaScript. The structure of a single page application is nearly identical to desktop applications. Using a framework facilitates clean separation of code to well defined domains.
 
 ## JavaScript Frameworks
-In recent years many JavaScript framworks appeared to help developers better structure JavaScript applications. Choosing frameworks is therefore not an easy task. 
-In the following section we describe the frameworks that were selected for HP MaaS.
+In recent years many JavaScript framworks appeared to help developers better structure JavaScript applications. The frameworks evolve constantly and many offer lucrative features.  Choosing a framework is therefore not an easy task.
 
-#### Backbone.js
+There are two different approaches for frameworks in Javascript:
+
+1. framework of libraries - Choose best of breed libraries where each library excel in a specific area.  Backbone.js and Knockout.js are great examples of this approach.
+1. full - fledged framework - Choose a framework that does most of what you need done. Angular.js and Ember.js re good examples of this approach.
+
+Each approach offers a set of benefits that should be considered.
+
+The framework of libraries offers a mix and match approach where only the best of breed makes it into the framework.  This allows for fewer compromises and JavaScript does make it easy to integrate the different frameworks together.  Most frameworks allow integration with other libraries but Backbone.js is probably the canonical example.  In addition, this approach allows you to replace a single library in your framework without having to change the whole stack.  If something better comes along, just replace the part that's relevant.  There are issues with this approach.  The integration with the frameworks will never be as good as the integration within a single framework.  You will also have to write much more boilerplate glue code to make everything work together.  Complexity is significantly raised because of the need to conslidate different approaches.  One last thing is the house of cards effect where upgrading a part of the framework becomes impossible because of incompabilities with the other libraries.  Upgrades become rather complex when the library composition gets complex.
+
+A full-fledged framework gives a better start as well as providing a more cohesive experience.  Version upgrades are easier because the framework is tested as a whole.  A lot of flexiblity is lost.  The framework should match the demands pretty closely or it will not provide an optimum experience.  In addition, if the framework has some weak parts they have to be used and dealt with even if there are better alternatives as stand alone libraries.  Lastly, the project is tied to the framework chosen.  Any decision taken by the framework down the line are binding to the project.
+
+HP MaaS tried both approaches.  We felt since we are designing our own framework the first approach is a more natural fit.  After much work with the first approach it was decided that the benefits of the approach out outweighed by the complexity and reduced velocity it introduces.  In the end we chose Angular.js as the framework of choice to build on.
+
+In the following section we describe the frameworks and libraries that were selected for HP MaaS.
+
+#### Angular.js
 Backbone is an MV* framework that provides both structure and infrastructure implementation. Backbone’s main classes are Model, Collection, View and Router.
 ###### Model
 _“Backbone Models are the heart of any JavaScript application, containing the interactive data as well as a large part of the logic surrounding it: conversions, validations, computed properties, and access control“_ (By backbone.js authors definition). Model object could  be saved to or retrieved from the server using standard REST API. 
@@ -214,7 +225,7 @@ Marionette is a collection of common design and implementation patterns. It prov
 
 #### JSLint (JSHint)
 JSLint is a code quality and validation tool.JSLint takes a JavaScript source and scans it. If it finds a problem, it returns a message describing the problem and an approximate location within the source. The problem is not necessarily a syntax error, although it often is. JSLint looks at some style conventions as well as structural problems (It does not prove that your program is correct functionally).
-JSHint is a fork of JSLint which is community driven, rather than controlled by a single, opinionated person (Douglas Crockford). It allows more flexability in rules customizations compared to JSLint.
+JSHint is a fork of JSLint which is community driven, rather than controlled by a single, opinionated person (Douglas Crockford). It allows more flexability in rules customizations compared to JSLint. JSHint allows more flexibility on how to write your code and what rules should be chosen and which should be ignored. JSHint offers the jshintrc files to provide a way to easily distributes the rules that the team should run.  
 
 
 
